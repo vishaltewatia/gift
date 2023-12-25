@@ -1,0 +1,342 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-family: "Mountains of Christmas", cursive;
+  overflow: hidden;
+}
+html::after,
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://i.postimg.cc/52tSwh4f/santa-claus-7037074-1280.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.headline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 20vw;
+  color: rgba(255, 255, 255, 0.12);
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+  user-select: none;
+}
+
+.untoldcoding {
+  position: absolute;
+  top: 27%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  color: white;
+  user-select: none;
+}
+.untoldcoding span {
+  position: absolute;
+  top: -28%;
+  left: 36%;
+  font-size: 60px;
+  font-weight: 800;
+  background: linear-gradient(to right, #ea2d03, #ff6b08, #dd5854, #ffe600);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.untoldcoding a {
+  font-weight: 800;
+  background: linear-gradient(#eb2828, #fd0000);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  text-decoration: none;
+}
+.credits {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white;
+  font-size: 20px;
+}
+
+.gift {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: block;
+  width: auto;
+  height: auto;
+  transform: translate3d(-50%, -50%, 0) rotateY(0) rotateX(0) scale(0);
+  transition: all 3s ease-out 0.5s;
+  user-select: none;
+}
+
+.present {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  cursor: pointer;
+  perspective: 600px;
+  transform: translateY(-50%);
+}
+
+.wiggle-container {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: bottom;
+}
+
+.present.animate .wiggle-container {
+  animation: wiggle 0.3s ease 0s 1 normal forwards;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: translateX(0) rotateX(0);
+  }
+  25% {
+    transform: translateX(calc(var(--count) * -1px))
+      rotateX(calc(var(--count) * 1deg));
+  }
+  50% {
+    transform: translateX(0) rotateX(0);
+  }
+  75% {
+    transform: translateX(calc(var(--count) * 1px))
+      rotateX(calc(var(--count) * -1deg));
+  }
+  100% {
+    transform: translateX(0) rotateX(0);
+  }
+}
+.rotate-container {
+  height: 100%;
+  transform: rotateY(170deg);
+  transform-style: preserve-3d;
+  animation: present-rotate 30s infinite linear;
+}
+
+@keyframes present-rotate {
+  0% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+.bottom,
+.front,
+.left,
+.back,
+.right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ec0707;
+}
+
+.bottom {
+  transform: translateY(50%) rotateX(90deg);
+}
+
+.front,
+.left,
+.back,
+.right {
+  transition: transform 1s ease-out 3s;
+  transform-origin: bottom;
+  transform-style: preserve-3d;
+}
+
+.front:after,
+.left:after,
+.back:after,
+.right:after,
+.lid-top:after,
+.lid-front:after,
+.lid-left:after,
+.lid-back:after,
+.lid-right:after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 10px);
+  width: 20px;
+  height: 100%;
+  background-color: white;
+  transform: translateZ(0.1px);
+}
+
+.lid-top:before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 10px);
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-color: white;
+  transform: translateZ(0.1px);
+}
+
+.left {
+  transform: translateX(-50%) rotateY(-90deg);
+}
+
+.back {
+  transform: translateZ(-100px) rotateY(180deg) rotateX(0);
+}
+
+.right {
+  transform: translateX(50%) rotateY(90deg);
+}
+
+.front {
+  transform: translateZ(100px);
+}
+
+.lid {
+  animation: lid-animation 3.5s 1s infinite;
+  transform: translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+  transition: transform 1s ease-out 3s;
+}
+
+@keyframes lid-animation {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0);
+  }
+  5% {
+    transform: translate3d(0, -10px, -5px) rotateX(5deg);
+  }
+  10% {
+    transform: translate3d(0, -10px, 5px) rotateX(-5deg);
+  }
+  15% {
+    transform: translate3d(0, -10px, -5px) rotateX(5deg);
+  }
+  20% {
+    transform: translate3d(0, -10px, 5px) rotateX(-5deg);
+  }
+  25% {
+    transform: translate3d(0, -10px, -5px) rotateX(5deg);
+  }
+  30% {
+    transform: translate3d(0, 0, 0) rotateX(0);
+  }
+}
+.lid-top,
+.lid-left,
+.lid-back,
+.lid-right,
+.lid-front {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 210px;
+  background-color: #d47735f5;
+  opacity: 1;
+}
+
+.lid-top {
+  top: -5px;
+  height: 210px;
+  transform: translateY(-50%) rotateX(90deg);
+  transform-style: preserve-3d;
+}
+
+.lid-left,
+.lid-back,
+.lid-right,
+.lid-front {
+  top: -5px;
+  height: 40px;
+  transform-style: preserve-3d;
+}
+
+.lid-left {
+  transform: translateX(-50%) rotateY(-90deg);
+}
+
+.lid-back {
+  transform: translateZ(-105px) rotateY(180deg);
+}
+
+.lid-right {
+  transform: translateX(50%) rotateY(90deg);
+}
+
+.lid-front {
+  transform: translateZ(105px);
+}
+
+.present:hover .lid {
+  animation: none;
+}
+
+.present.open {
+  cursor: default;
+}
+.present.open .gift {
+  transform: translate3d(-50%, -50%, 100px) rotateY(360deg) rotateX(5deg)
+    scale(1);
+}
+.present.open .wiggle-container {
+  animation: none;
+}
+.present.open .left {
+  transform: translateX(-50%) rotateY(-90deg) rotateX(-90deg);
+}
+.present.open .back {
+  transform: translateZ(-100px) rotateY(180deg) rotateX(-90deg);
+}
+.present.open .right {
+  transform: translateX(50%) rotateY(90deg) rotateX(-90deg);
+}
+.present.open .front {
+  transform: translateZ(100px) rotateX(-90deg);
+}
+.present.open .lid {
+  animation: none;
+  transform: translate3d(0, -120px, -120px) rotateX(50deg);
+}
+.present.open .front,
+.present.open .left,
+.present.open .back,
+.present.open .right,
+.present.open .lid {
+  transition: transform 0.5s ease-out;
+}
